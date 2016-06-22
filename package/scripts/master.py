@@ -20,25 +20,25 @@ class Master(Script):
     #Execute('sed -i "s/example.com/'+params.kdc_domain+'/g" /etc/krb5.conf')
     
 
-    Execute('echo "'+params.kdb_password+'" > passwd.txt')
-    Execute('echo "'+params.kdb_password+'" >> passwd.txt')
-    Execute('echo >> passwd.txt')
-    Execute('kdb5_util create -s < passwd.txt')
-    Execute('rm passwd.txt')
+    #Execute('echo "'+params.kdb_password+'" > passwd.txt')
+    #Execute('echo "'+params.kdb_password+'" >> passwd.txt')
+    #Execute('echo >> passwd.txt')
+    #Execute('kdb5_util create -s < passwd.txt')
+    #Execute('rm passwd.txt')
 
-    Execute('/etc/rc.d/init.d/krb5kdc start')
-    Execute('/etc/rc.d/init.d/kadmin start')
+    #Execute('/etc/rc.d/init.d/krb5kdc start')
+    #Execute('/etc/rc.d/init.d/kadmin start')
 
-    Execute('chkconfig krb5kdc on')
-    Execute('chkconfig kadmin on')
+    #Execute('chkconfig krb5kdc on')
+    #Execute('chkconfig kadmin on')
 
-    Execute('echo "'+params.kdc_adminpassword+'" > passwd.txt')
-    Execute('echo "'+params.kdc_adminpassword+'" >> passwd.txt')
-    Execute('echo >> passwd.txt')
-    Execute('kadmin.local -q "addprinc '+params.kdc_admin+'" < passwd.txt')
-    Execute('rm passwd.txt')
+    #Execute('echo "'+params.kdc_adminpassword+'" > passwd.txt')
+    #Execute('echo "'+params.kdc_adminpassword+'" >> passwd.txt')
+    #Execute('echo >> passwd.txt')
+    #Execute('kadmin.local -q "addprinc '+params.kdc_admin+'" < passwd.txt')
+    #Execute('rm passwd.txt')
 
-    Execute('echo "*/admin@'+params.kdc_realm+' *" > /var/kerberos/krb5kdc/kadm5.acl')
+    #Execute('echo "*/admin@'+params.kdc_realm+' *" > /var/kerberos/krb5kdc/kadm5.acl')
 
 
 
@@ -56,8 +56,8 @@ class Master(Script):
     import status_params
     self.configure(env)
     
-    Execute('service krb5kdc stop')
-    Execute('service kadmin stop')
+   # Execute('service krb5kdc stop')
+   # Execute('service kadmin stop')
           
   def start(self, env):
     import params
@@ -65,14 +65,14 @@ class Master(Script):
     self.configure(env)
     
     #Execute('mkdir '+ status_params.kdc_piddir, ignore_failures=True)    
-    Execute('service krb5kdc start')
-    Execute('service kadmin start')
+   # Execute('service krb5kdc start')
+   # Execute('service kadmin start')
     #Execute("service krb5kdc status |  sed 's/.*(pid\s*\(.*\)).*/\\1/' > " + status_params.kdc_pidfile)
 
   def status(self, env):
     import status_params
     env.set_params(status_params)  
-    check_process_status('/var/run/krb5kdc.pid')  
+    #check_process_status('/var/run/krb5kdc.pid')  
     
 if __name__ == "__main__":
   Master().execute()

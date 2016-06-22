@@ -24,9 +24,6 @@
               <osSpecific>
                 <osFamily>redhat6</osFamily>
                 <packages>
-                   <package><name>krb5-server</name></package>   
-                   <package><name>krb5-libs</name></package>   
-                   <package><name>krb5-auth-dialog</name></package>   
                    <package><name>krb5-workstation</name></package>           	                                             
                 </packages>
               </osSpecific>
